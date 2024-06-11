@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Build the Docker image
       run: docker build . -t my-flask-app
@@ -18,11 +18,11 @@ jobs:
     - name: Login to Azure Container Registry
       uses: azure/docker-login@v1
       with:
-        login-server: <your-acr-login-server>.azurecr.io
+        login-server: integrationdep.azurecr.io
         username: ${{ secrets.AZURE_USERNAME }}
         password: ${{ secrets.AZURE_PASSWORD }}
 
     - name: Push Image to Azure Container Registry
       run: |
-        docker tag my-flask-app <your-acr-login-server>.azurecr.io/my-flask-app:v1
-        docker push <your-acr-login-server>.azurecr.io/my-flask-app:v1
+        docker tag my-flask-app integrationdep.azurecr.io/my-flask-app:v1
+        docker push integrationdep.azurecr.io/my-flask-app:v1

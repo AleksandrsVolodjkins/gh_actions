@@ -3,11 +3,23 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "myResourceGroup"
+  name     = "integration"
   location = var.location
 }
 
-resource "azurerm_virtual_network" "vnet" {
+resource "azurerm_container_registry" "acr" {
+  name                = "integrationdep"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = "Basic"
+  admin_enabled       = true
+}
+
+
+
+
+
+/* resource "azurerm_virtual_network" "vnet" {
   name                = "myVNet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
@@ -68,3 +80,4 @@ resource "azurerm_linux_virtual_machine" "myvm" {
     public_key = file("~/.ssh/id_rsa.pub")
   }
 }
+ */

@@ -21,3 +21,10 @@ CMD ["python", "app.py"]
 
 # docker build -t my-flask-app .
 # docker run -p 4000:80 my-flask-app
+
+# git add .
+# git commit -m "Initial commit"
+# git remote add origin <your-repo-url>
+# git push -u origin master
+
+
